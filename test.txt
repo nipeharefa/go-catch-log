@@ -1,0 +1,4 @@
+{"message":"Hello","severity":"INFO","logging.googleapis.com/labels":{"useCase":"OutBound"}}
+{"message":"Hello","severity":"INFO","logging.googleapis.com/labels":{"useCase":"OutBound"}}
+Nipe
+{"message":"Hello","severity":"INFO","logging.googleapis.com/labels":{"useCase":"OutBound"}}
