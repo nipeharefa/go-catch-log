@@ -29,11 +29,6 @@ type Log struct {
 
 type Logs []Log
 
-// Ear ...
-type Ear struct {
-	ID string `json:"bucketname"`
-}
-
 func startHttp() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", HomeHandler)
@@ -47,20 +42,23 @@ func startHttp() {
 func main() {
 	gcp := GCPLogger{}
 
+	// Read from stdin
 	reader := bufio.NewReader(os.Stdin)
 	logs = make(Logs, 0)
+
 	go startHttp()
 
 	for {
 		text, _, _ := reader.ReadLine()
 		if text != nil {
+			// Init Log
 			l := Log{
 				Message:   string(text),
 				Timestamp: time.Now(),
 			}
 
+			// Capture GCP Container
 			_ = gcp.Read(text, &l)
-
 			logs = append(logs, l)
 
 			fmt.Println(string(text))
